@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servicios de FIJASUR LTDA — Entrega, asesoría técnica y distribución en Rancagua">
+    <title>Servicios — FIJASUR LTDA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .servicios-hero {
+            background: linear-gradient(135deg, var(--azul-turquesa), var(--azul-claro));
+            color: var(--blanco);
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        .servicios-hero h2 { font-size: 40px; font-weight: 700; margin-bottom: 14px; }
+        .servicios-hero p { font-size: 18px; opacity: 0.9; max-width: 580px; margin: 0 auto; }
+
+        /* Servicios principales */
+        .servicios-principales { background: var(--blanco); padding: 80px 20px; }
+
+        .servicio-detalle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto 70px auto;
+            padding-bottom: 70px;
+            border-bottom: 1px solid var(--gris-medio);
+        }
+
+        .servicio-detalle:last-child { border-bottom: none; margin-bottom: 0; }
+
+        .servicio-detalle.reverse { direction: rtl; }
+        .servicio-detalle.reverse > * { direction: ltr; }
+
+        /* MODIFICADO PARA IMÁGENES */
+        .servicio-visual {
+            background: var(--gris-claro);
+            border-radius: 10px;
+            overflow: hidden; /* Mantiene los bordes redondeados en la imagen */
+            display: flex;
+            min-height: 280px; /* Altura ideal para las fotos */
+            box-shadow: 0 4px 20px rgba(10,26,46,0.08); /* Sombra elegante */
+        }
+
+        .servicio-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Llena el espacio sin deformar la foto */
+            transition: transform 0.3s ease;
+        }
+
+        .servicio-visual:hover img {
+            transform: scale(1.05); /* Pequeño efecto zoom al pasar el mouse */
+        }
+
+        .servicio-texto h3 {
+            font-size: 26px;
+            color: var(--azul-oscuro);
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .servicio-texto p {
+            color: var(--gris-oscuro);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .servicio-puntos { list-style: none; margin-bottom: 20px; }
+        .servicio-puntos li {
+            color: var(--gris-oscuro);
+            font-size: 14px;
+            padding: 5px 0 5px 22px;
+            position: relative;
+        }
+        .servicio-puntos li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--azul-turquesa);
+            font-weight: 700;
+        }
+
+        /* Proceso */
+        .proceso { background: var(--gris-claro); padding: 80px 20px; }
+
+        .proceso-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .proceso-steps::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: var(--azul-turquesa);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-num {
+            width: 60px;
+            height: 60px;
+            background: var(--azul-turquesa);
+            color: var(--blanco);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 auto 16px auto;
+            border: 4px solid var(--blanco);
+            box-shadow: 0 0 0 3px var(--azul-turquesa);
+        }
+
+        .step h4 { color: var(--azul-oscuro); font-size: 16px; margin-bottom: 6px; }
+        .step p { color: #666; font-size: 13px; }
+
+        /* Zonas de despacho */
+        .cobertura { background: var(--blanco); padding: 80px 20px; }
+
+        .cobertura-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cobertura-lista { list-style: none; }
+        .cobertura-lista li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gris-medio);
+            color: var(--gris-oscuro);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .cobertura-lista .zona-icon { font-size: 16px; }
+
+        .cobertura-visual {
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-intermedio));
+            border-radius: 10px;
+            padding: 40px;
+            color: var(--blanco);
+            text-align: center;
+        }
+
+        .cobertura-visual .big-icon { font-size: 60px; margin-bottom: 16px; }
+        .cobertura-visual h4 { font-size: 20px; margin-bottom: 10px; }
+        .cobertura-visual p { font-size: 14px; opacity: 0.85; }
+
+        @media (max-width: 768px) {
+            .servicio-detalle,
+            .servicio-detalle.reverse { grid-template-columns: 1fr; direction: ltr; }
+            .cobertura-content { grid-template-columns: 1fr; }
+            .proceso-steps::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <img src="imagenes/VERIFICADO.jpg" alt="Logo FIJASUR" class="logo-img">
+                <div class="brand-name">
+                    <h1>FIJASUR</h1>
+                    <p class="tagline">Soluciones en Fijaciones</p>
+                </div>
+            </div>
+            <nav class="navbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="historia.html" class="nav-link">¿Quiénes Somos?</a></li>
+                    <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+                    <li><a href="servicios.html" class="nav-link active">Servicios</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="servicios-hero">
+        <div class="container">
+            <h2>Nuestros Servicios</h2>
+            <p>Más que tornillos: ofrecemos soluciones completas de fijación para proyectos de cualquier escala.</p>
+        </div>
+    </div>
+
+    <!-- TARJETAS RÁPIDAS -->
+    <section class="servicios" style="background:var(--gris-claro);">
+        <div class="container">
+            <div class="servicios-grid">
+                <div class="servicio-card">
+                    <div class="servicio-icon">📦</div>
+                    <h3>Entrega Rápida</h3>
+                    <p>Despacho en menos de 24 horas dentro de Rancagua y la región</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon">✅</div>
+                    <h3>Calidad Garantizada</h3>
+                    <p>Productos certificados bajo estándares internacionales ISO</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon">🤝</div>
+                    <h3>Asesoría Técnica</h3>
+                    <p>Equipo especializado para orientarte en la elección correcta</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon">💰</div>
+                    <h3>Precios Mayorista</h3>
+                    <p>Tarifas especiales para compras en volumen y proyectos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS DETALLADOS (AHORA CON IMÁGENES) -->
+    <section class="servicios-principales">
+        <div class="container">
+            <h2 class="section-title">Cómo te ayudamos</h2>
+
+            <!-- Servicio 1 -->
+            <div class="servicio-detalle">
+                <div class="servicio-visual">
+                    <!-- Puedes cambiar esta ruta por la imagen que prefieras -->
+                    <img src="imagenes/FurgonCargado.jpeg" alt="Despacho FIJASUR">
+                </div>
+                <div class="servicio-texto">
+                    <h3>Distribución y Entrega</h3>
+                    <p>Contamos con una red de distribución eficiente que cubre Rancagua y toda la Región de O'Higgins. Nuestros pedidos se despachan el mismo día para órdenes confirmadas antes de las 14:00 hrs.</p>
+                    <ul class="servicio-puntos">
+                        <li>Despacho en 24 horas en la región</li>
+                        <li>Seguimiento de pedido en tiempo real</li>
+                        <li>Entrega en obra o bodega</li>
+                        <li>Empaque seguro para evitar daños</li>
+                    </ul>
+                    <a href="contacto.html" class="btn btn-primary">Solicitar entrega</a>
+                </div>
+            </div>
+
+            <!-- Servicio 2 -->
+            <div class="servicio-detalle reverse">
+                <div class="servicio-visual">
+                    <!-- Puedes cambiar esta ruta por la imagen que prefieras -->
+                    <img src="imagenes/ferreteriaDonHector.jpeg" alt="Asesoría Técnica">
+                </div>
+                <div class="servicio-texto">
+                    <h3>Asesoría Técnica Especializada</h3>
+                    <p>Nuestro equipo de técnicos puede orientarte en la selección del tornillo correcto según el material, carga y condiciones ambientales de tu proyecto, evitando errores costosos.</p>
+                    <ul class="servicio-puntos">
+                        <li>Selección de material y resistencia</li>
+                        <li>Normativas aplicables (DIN, ISO, ASTM)</li>
+                        <li>Compatibilidad con otros componentes</li>
+                        <li>Atención presencial o por WhatsApp</li>
+                    </ul>
+                    <a href="contacto.html" class="btn btn-primary">Consultar ahora</a>
+                </div>
+            </div>
+
+            <!-- Servicio 3 -->
+            <div class="servicio-detalle">
+                <div class="servicio-visual">
+                    <!-- Puedes cambiar esta ruta por la imagen que prefieras -->
+                    <img src="imagenes/PaletFijaSur.jpeg" alt="Ventas por mayor">
+                </div>
+                <div class="servicio-texto">
+                    <h3>Precios Mayoristas y Proyectos</h3>
+                    <p>Para empresas constructoras, contratistas y proyectos de gran escala, ofrecemos precios especiales por volumen, crédito a 30 días y cotizaciones personalizadas para licitaciones.</p>
+                    <ul class="servicio-puntos">
+                        <li>Descuentos desde 20 unidades</li>
+                        <li>Cotizaciones para licitaciones</li>
+                        <li>Crédito a 30 días para empresas</li>
+                        <li>Facturas electrónicas de inmediato</li>
+                    </ul>
+                    <a href="contacto.html" class="btn btn-primary">Pedir cotización</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="proceso">
+        <div class="container">
+            <h2 class="section-title">¿Cómo funciona?</h2>
+            <div class="proceso-steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h4>Consulta</h4>
+                    <p>Contáctanos o visita el catálogo para elegir tu producto</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h4>Cotización</h4>
+                    <p>Recibes una cotización personalizada en menos de 2 horas</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h4>Confirmación</h4>
+                    <p>Confirmas el pedido y realizas el pago o acordas crédito</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <h4>Despacho</h4>
+                    <p>Tu pedido llega en menos de 24 horas a la dirección indicada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COBERTURA -->
+    <section class="cobertura">
+        <div class="container">
+            <h2 class="section-title">Zona de Cobertura</h2>
+            <div class="cobertura-content">
+                <div>
+                    <ul class="cobertura-lista">
+                        <li><span class="zona-icon">📍</span> Rancagua (despacho mismo día)</li>
+                        <li><span class="zona-icon">📍</span> Machalí</li>
+                        <li><span class="zona-icon">📍</span> Graneros</li>
+                        <li><span class="zona-icon">📍</span> San Fernando</li>
+                        <li><span class="zona-icon">📍</span> Rengo</li>
+                        <li><span class="zona-icon">📍</span> Pichilemu</li>
+                        <li><span class="zona-icon">🚚</span> Región Metropolitana (2-3 días)</li>
+                        <li><span class="zona-icon">📦</span> Todo Chile vía courier</li>
+                    </ul>
+                </div>
+                <div class="cobertura-visual">
+                    <div class="big-icon">🗺️</div>
+                    <h4>Región de O'Higgins</h4>
+                    <p>Centro de operaciones en Rancagua, con cobertura total en la región y despacho nacional vía courier de primera línea.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 <strong>FIJASUR LTDA</strong> — Rancagua, O'Higgins | Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+</body>
+</html>

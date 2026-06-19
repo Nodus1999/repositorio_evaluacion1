@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="¿Quiénes Somos? — FIJASUR LTDA - Historia, fidelidad y calidad">
+    <title>¿Quiénes Somos? — FIJASUR LTDA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* HERO */
+        .historia-hero {
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-intermedio));
+            color: var(--blanco);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .historia-hero h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .historia-hero p {
+            font-size: 17px;
+            opacity: 0.85;
+        }
+
+        /* Contenido de Historia */
+        .historia-content-main {
+            background: var(--blanco);
+            padding: 80px 20px;
+        }
+
+        .historia-texto-principal {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            background: var(--gris-claro);
+            padding: 50px 40px;
+            border-radius: 8px;
+            border-left: 5px solid var(--azul-turquesa);
+        }
+
+        .historia-texto-principal h3 {
+            color: var(--azul-oscuro);
+            font-size: 32px;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .historia-texto-principal p {
+            color: #555;
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .historia-texto-principal p:last-child {
+            margin-bottom: 0;
+        }
+
+        .historia-texto-principal strong {
+            color: var(--azul-turquesa);
+            font-weight: 700;
+        }
+
+        /* Valores */
+        .valores-section {
+            background: var(--gris-claro);
+            padding: 60px 20px;
+        }
+
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .valor-card {
+            background: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(10,26,46,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .valor-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(10,26,46,0.15);
+        }
+
+        .valor-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .valor-card h4 {
+            color: var(--azul-oscuro);
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .valor-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Galerías */
+        .galerias-main {
+            background: var(--blanco);
+            padding: 80px 20px;
+        }
+
+        .galerias-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .galeria-seccion h3 {
+            color: var(--azul-oscuro);
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--azul-turquesa);
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .galeria-item {
+            text-align: center;
+            animation: fadeInUp 0.55s ease both;
+        }
+
+        .galeria-placeholder {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--azul-intermedio), var(--azul-turquesa));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blanco);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(10,26,46,0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .galeria-placeholder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(23,162,184,0.3);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(10,26,46,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .galeria-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(23,162,184,0.3);
+        }
+
+        .galeria-caption {
+            color: #777;
+            font-size: 14px;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .galerias-container { grid-template-columns: 1fr; gap: 40px; }
+            .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+            .historia-hero h2 { font-size: 28px; }
+            .historia-texto-principal h3 { font-size: 24px; }
+            .historia-texto-principal { padding: 30px 20px; }
+            .valores-grid { grid-template-columns: 1fr; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* LIGHTBOX MODAL */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            color: var(--azul-turquesa);
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <img src="imagenes/VERIFICADO.jpg" alt="Logo FIJASUR" class="logo-img">
+                <div class="brand-name">
+                    <h1>FIJASUR</h1>
+                    <p class="tagline">Definición de calidad y precio</p>
+                </div>
+            </div>
+            <nav class="navbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="historia.html" class="nav-link active">¿Quiénes Somos?</a></li>
+                    <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+                    <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="historia-hero">
+        <div class="container">
+            <h2>¿Quiénes Somos?</h2>
+            <p>Conoce la historia, valores y compromiso de FIJASUR con la calidad</p>
+        </div>
+    </div>
+
+    <!-- HISTORIA -->
+    <section class="historia-content-main">
+        <div class="container">
+            <div class="historia-texto-principal">
+                <h3>La Historia de FIJASUR</h3>
+                <p>En <strong>FIJASUR LTDA</strong>, nos dedicamos a proporcionar soluciones de fijación de la más alta calidad para profesionales y empresas en toda la Región de O'Higgins. Con más de 10 años de experiencia, hemos construido nuestra reputación sobre dos pilares fundamentales: <strong>fidelidad</strong> y <strong>calidad</strong>.</p>
+                <p>Desde nuestros inicios, hemos trabajado incansablemente para consolidar una relación de confianza con nuestros clientes. Cada tornillo, cada fijación que distribuimos, ha sido seleccionado y revisado bajo los más altos estándares internacionales. Creemos que la excelencia no es un destino, sino un viaje constante de mejora.</p>
+                <p>Nuestro equipo está compuesto por profesionales especializados que comprenden las necesidades técnicas de cada proyecto. Oferecemos asesoría personalizada, entregas rápidas en la región (72 horas garantizadas), y sobre todo, un compromiso sincero con nuestros clientes.</p>
+                <p>Hoy, FIJASUR es el distribuidor preferido de tornillos y fijaciones en Rancagua y alrededores, porque entendemos que tu éxito es nuestro éxito.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORES -->
+    <section class="valores-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Valores</h2>
+            <div class="valores-grid">
+                <div class="valor-card">
+                    <span class="valor-icon">🤝</span>
+                    <h4>Fidelidad</h4>
+                    <p>Construimos relaciones duraderas basadas en la confianza, el compromiso y la atención personalizada a cada cliente.</p>
+                </div>
+                <div class="valor-card">
+                    <span class="valor-icon">✅</span>
+                    <h4>Calidad</h4>
+                    <p>Cada producto que distribuimos cumple con certificaciones ISO y estándares internacionales de excelencia.</p>
+                </div>
+                <div class="valor-card">
+                    <span class="valor-icon">⚡</span>
+                    <h4>Agilidad</h4>
+                    <p>Entregas rápidas y respuestas ágiles para que tu proyecto avance sin interrupciones.</p>
+                </div>
+                <div class="valor-card">
+                    <span class="valor-icon">🎯</span>
+                    <h4>Profesionalismo</h4>
+                    <p>Equipo especializado con amplio conocimiento técnico para asesorarte en cada decisión.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍAS -->
+    <section class="galerias-main">
+        <div class="container">
+            <div class="galerias-container" style="grid-template-columns: 1fr;">
+                <!-- Galería de imágenes -->
+                <div class="galeria-seccion">
+                    <h3>📸 Galería</h3>
+                    <div class="galeria-grid">
+                        <div class="galeria-item">
+                            <img src="imagenes/camion.jpeg" alt="Llegada de mercaderia">
+                            <p class="galeria-caption">Llegada de mercaderia</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/CamionCargado.jpeg" alt="Camion Cargado">
+                            <p class="galeria-caption">Camion Cargado</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/DescargaCamion.jpeg" alt="Descarga Camion">
+                            <p class="galeria-caption">Descarga Camion</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/YaleDescargando.jpeg" alt="Descarga">
+                            <p class="galeria-caption">Descarga</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/FurgonCargado.jpeg" alt="Despachando mercaderia para el sur de  Chile">
+                            <p class="galeria-caption">Despachando mercaderia para el sur de  Chile</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/FurgonCargado2.jpeg" alt="Despachando mercaderia para el sur de  Chile">
+                            <p class="galeria-caption">Despachando mercaderia para el sur de  Chile</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/FijasurExterior2.jpeg" alt="Frontis del local">
+                            <p class="galeria-caption">Frontis del local</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/LocalFijasurNoche.jpeg" alt="Frontis del local">
+                            <p class="galeria-caption">Frontis del local de noche</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/InteriorFijasur.jpeg" alt="Interior del local">
+                            <p class="galeria-caption">Interior del local</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/PaletFijaSur.jpeg" alt="Palet con mercaderia">
+                            <p class="galeria-caption">Palet con mercaderia</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/ferreteriaDonHector.jpeg" alt="Don Hector">
+                            <p class="galeria-caption">Instalacion  de letrero a nuestros clientes</p>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="imagenes/FerreteriaMolivar.jpeg" alt="Molivar">
+                            <p class="galeria-caption">Instalacion  de letrero a nuestros clientes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- CTA -->
+    <section class="cta-section" style="background:var(--gris-claro);">
+        <div class="container">
+            <h2>¿Listo para trabajar con FIJASUR?</h2>
+            <p>Contáctanos para conocer nuestras soluciones o revisa nuestro catálogo completo de productos.</p>
+            <div class="cta-btns">
+                <a href="catalogo.html" class="btn btn-primary">Ver Catálogo</a>
+                <a href="contacto.html" class="btn btn-secondary">Contactar Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img id="lightboxImage" src="" alt="Imagen ampliada">
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 <strong>FIJASUR LTDA</strong> — Rancagua, O'Higgins | Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+        // Lightbox functionality
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        // Agregar click listeners a todas las imágenes de la galería
+        document.querySelectorAll('.galeria-item img').forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function() {
+                lightboxImage.src = this.src;
+                lightboxModal.classList.add('active');
+            });
+        });
+
+        // Cerrar modal al hacer click en la X
+        lightboxClose.addEventListener('click', function() {
+            lightboxModal.classList.remove('active');
+        });
+
+        // Cerrar modal al hacer click fuera de la imagen
+        lightboxModal.addEventListener('click', function(e) {
+            if (e.target === lightboxModal) {
+                lightboxModal.classList.remove('active');
+            }
+        });
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                lightboxModal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

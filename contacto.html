@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacto FIJASUR LTDA — Rancagua, O'Higgins">
+    <title>Contacto — FIJASUR LTDA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contacto-hero {
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-intermedio));
+            color: var(--blanco);
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        .contacto-hero h2 { font-size: 40px; font-weight: 700; margin-bottom: 14px; }
+        .contacto-hero p { font-size: 17px; opacity: 0.85; max-width: 500px; margin: 0 auto; }
+
+        /* Página de contacto */
+        .contacto-page { background: var(--gris-claro); padding: 70px 20px; }
+
+        .contacto-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 40px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* Panel izquierdo info */
+        .info-panel {
+            background: var(--azul-oscuro);
+            border-radius: 10px;
+            padding: 40px;
+            color: var(--blanco);
+        }
+
+        .info-panel h3 {
+            font-size: 22px;
+            margin-bottom: 28px;
+            color: var(--azul-turquesa);
+            font-weight: 700;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .info-item .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(23,162,184,0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .info-item .info-text strong {
+            display: block;
+            color: var(--azul-turquesa);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .info-item .info-text span { color: rgba(255,255,255,0.85); font-size: 15px; }
+
+        .horario {
+            background: rgba(23,162,184,0.12);
+            border-radius: 8px;
+            padding: 18px;
+            margin-top: 28px;
+        }
+
+        .horario h4 { color: var(--azul-turquesa); font-size: 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .horario p { color: rgba(255,255,255,0.8); font-size: 14px; margin-bottom: 4px; }
+
+        /* Panel derecho formulario */
+        .form-panel {
+            background: var(--blanco);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(10,26,46,0.08);
+        }
+
+        .form-panel h3 {
+            font-size: 22px;
+            color: var(--azul-oscuro);
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--azul-oscuro);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--gris-medio);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 15px;
+            color: var(--gris-oscuro);
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: var(--blanco);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--azul-turquesa);
+            box-shadow: 0 0 0 3px rgba(23,162,184,0.12);
+        }
+
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: var(--error);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .aviso-producto {
+            background: rgba(23,162,184,0.08);
+            border: 1px solid rgba(23,162,184,0.3);
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-size: 14px;
+            color: var(--azul-oscuro);
+            margin-bottom: 18px;
+            display: none;
+        }
+
+        .aviso-producto.visible { display: block; }
+        .aviso-producto strong { color: var(--azul-turquesa); }
+
+        .success-msg {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+            font-size: 15px;
+            display: none;
+        }
+
+        .success-msg.visible { display: block; }
+
+        /* FAQ rápida */
+        .faq { background: var(--blanco); padding: 70px 20px; }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--gris-claro);
+            border-radius: 8px;
+            padding: 24px;
+            border-left: 4px solid var(--azul-turquesa);
+        }
+
+        .faq-item h4 { color: var(--azul-oscuro); font-size: 16px; margin-bottom: 8px; }
+        .faq-item p { color: var(--gris-oscuro); font-size: 14px; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            .contacto-wrapper { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ESTILOS DEL BOTÓN FLOTANTE DE WHATSAPP CON TEXTO */
+        .whatsapp-flotante {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px; /* Forma de píldora */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-flotante:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <img src="imagenes/VERIFICADO.jpg" alt="Logo FIJASUR" class="logo-img">
+                <div class="brand-name">
+                    <h1>FIJASUR</h1>
+                    <p class="tagline">Soluciones en Fijaciones</p>
+                </div>
+            </div>
+            <nav class="navbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="historia.html" class="nav-link">¿Quiénes Somos?</a></li>
+                    <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+                    <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+                    <li><a href="contacto.html" class="nav-link active">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="contacto-hero">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <p>Estamos para ayudarte a encontrar la solución de fijación perfecta para tu proyecto.</p>
+        </div>
+    </div>
+
+    <section class="contacto-page">
+        <div class="container">
+            <div class="contacto-wrapper">
+
+                <div class="info-panel fade-in">
+                    <h3>Información de Contacto</h3>
+
+                    <div class="info-item">
+                        <div class="icon">📞</div>
+                        <div class="info-text">
+                            <strong>Teléfono</strong>
+                            <span>+56 9 6506 9458</span>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon">✉️</div>
+                        <div class="info-text">
+                            <strong>Email</strong>
+                            <span>info@fijasur.cl</span>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon">📍</div>
+                        <div class="info-text">
+                            <strong>Dirección</strong>
+                            <span>Rancagua, Región de O'Higgins Av Republica de Chile 525</span>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon">💬</div>
+                        <div class="info-text">
+                            <strong>WhatsApp</strong>
+                            <span>Respuesta en menos de 2 horas</span>
+                        </div>
+                    </div>
+
+                    <div class="horario">
+                        <h4>Horario de atención</h4>
+                        <p>Lunes a Viernes: 8:30 – 18:00</p>
+                        <p>Sábado: Cerrado</p>
+                        <p>Domingo: Cerrado</p>
+                    </div>
+                </div>
+
+                <div class="form-panel fade-in-delay">
+                    <h3>Envíanos un mensaje</h3>
+
+                    <div class="aviso-producto" id="avisoProd">
+                        Cotizando: <strong id="nombreProducto"></strong> — completa el formulario y te respondemos pronto.
+                    </div>
+
+                    <div class="success-msg" id="successMsg">
+                        ✅ ¡Gracias por tu mensaje! Nos pondremos en contacto contigo a la brevedad.
+                    </div>
+
+                    <form id="contactForm" action="https://formspree.io/f/xrevdlwl" method="POST" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre *</label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="empresa">Empresa</label>
+                                <input type="text" id="empresa" name="empresa" placeholder="(opcional)" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" placeholder="tu@email.cl" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" placeholder="+56 9..." />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="asunto">Tipo de consulta *</label>
+                            <select id="asunto" name="asunto" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="cotizacion">Solicitar cotización</option>
+                                <option value="stock">Consulta de stock</option>
+                                <option value="tecnico">Asesoría técnica</option>
+                                <option value="despacho">Información de despacho</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="producto">Producto de interés</label>
+                            <input type="text" id="producto" name="producto" placeholder="Ej: Tornillo Allen M5, TCP-M4X20..." />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje *</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos sobre tu proyecto o consulta..." required></textarea>
+                        </div>
+
+                        <button type="submit" id="btnSubmit" class="btn btn-primary" style="width:100%;margin-top:6px;">Enviar Mensaje</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>¿Cuánto demora el despacho?</h4>
+                    <p>Los pedidos confirmados antes de las 14:00 hrs se despachan el mismo día en Rancagua. Para el resto de la región, el plazo es de 24 horas hábiles.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>¿Tienen precios mayoristas?</h4>
+                    <p>Sí, ofrecemos descuentos por volumen desde 20 unidades. Contáctanos para recibir una cotización personalizada según tu proyecto.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>¿Emiten factura electrónica?</h4>
+                    <p>Sí, emitimos boleta y factura electrónica para personas y empresas. Aceptamos transferencia bancaria, cheque y efectivo.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>¿Puedo retirar en bodega?</h4>
+                    <p>¡Claro! Puedes retirar tu pedido directamente en nuestra bodega en Rancagua durante el horario de atención.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 <strong>FIJASUR LTDA</strong> — Rancagua, O'Higgins | Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/56934570619?text=Hola,%20estoy%20en%20la%20secci%C3%B3n%20de%20contacto%20de%20FIJASUR%20y%20me%20gustar%C3%ADa%20hacer%20una%20consulta." class="whatsapp-flotante" target="_blank" rel="noopener noreferrer" aria-label="Chat en WhatsApp">
+        <svg viewBox="0 0 32 32" width="24" height="24">
+            <path fill="currentColor" d="M16.05 32h-.05c-2.68 0-5.32-.72-7.66-2.09L0 32l2.2-8.11A15.86 15.86 0 0 1 .1 15.95C.1 7.15 7.25 0 16.05 0s15.95 7.15 15.95 15.95S24.85 32 16.05 32zM8.53 27.24l.53.31a13.3 13.3 0 0 0 6.94 1.95c7.37 0 13.36-5.99 13.36-13.36S23.37 2.78 16 2.78 2.64 8.77 2.64 16.14c0 2.45.66 4.82 1.91 6.89l.34.56L3.5 28.5l5.03-1.26zm12.35-7.39c-.19-.31-.72-.5-1.5-.88s-4.63-2.28-5.34-2.54-.88-.25-1.25.31c-.38.56-1.44 1.81-1.75 2.19s-.63.44-1.41.06a10.9 10.9 0 0 1-3.21-1.98 12.06 12.06 0 0 1-2.22-2.75c-.31-.54-.03-.83.36-1.22.36-.36.75-.88 1.13-1.31.38-.44.5-.75.75-1.25s.13-.94-.06-1.31c-.19-.38-1.25-3.03-1.72-4.14-.45-1.08-.92-1.04-1.25-1.04-.31 0-.69-.02-1.06-.02s-1.03.14-1.56.72C3.12 9.42 1.5 10.95 1.5 14c0 3.03 2.13 5.97 2.44 6.38.31.41 4.34 6.63 10.5 9.28 1.47.64 2.61 1.02 3.51 1.3.1.03.19.06.29.08 1.34.28 2.56.25 3.53.13 1.08-.14 3.34-1.38 3.81-2.72s.47-2.47.33-2.72z"/>
+        </svg>
+        WhatsApp
+    </a>
+
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Función para leer parámetros de la URL
+            function getUrlParam(key) {
+                return new URLSearchParams(window.location.search).get(key);
+            }
+
+            // Pre-llenar producto si viene de detalle.html
+            const productoParam = getUrlParam('producto');
+            if (productoParam) {
+                document.getElementById('producto').value = productoParam;
+                document.getElementById('nombreProducto').textContent = productoParam;
+                document.getElementById('avisoProd').classList.add('visible');
+                document.getElementById('asunto').value = 'cotizacion';
+            }
+
+            // Formulario conectado a Formspree usando Fetch
+            const form = document.getElementById('contactForm');
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault(); 
+
+                // Validación simple
+                let valido = true;
+                ['nombre', 'email', 'asunto', 'mensaje'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (!el.value.trim()) {
+                        el.classList.add('error');
+                        valido = false;
+                    } else {
+                        el.classList.remove('error');
+                    }
+                });
+
+                if (!valido) {
+                    alert("Por favor, completa los campos obligatorios marcados en rojo.");
+                    return;
+                }
+
+                // Cambiar el texto del botón mientras envía
+                const btnSubmit = document.getElementById('btnSubmit');
+                const btnOriginalText = btnSubmit.textContent;
+                btnSubmit.textContent = "Enviando...";
+                btnSubmit.disabled = true;
+
+                // Enviar datos
+                const formData = new FormData(form);
+                
+                try {
+                    const response = await fetch('https://formspree.io/f/xrevdlwl', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        form.style.display = 'none';
+                        const aviso = document.getElementById('avisoProd');
+                        if(aviso) aviso.style.display = 'none';
+                        document.getElementById('successMsg').classList.add('visible');
+                        form.reset(); 
+                    } else {
+                        alert("Hubo un problema al enviar tu mensaje. Intenta de nuevo.");
+                        btnSubmit.textContent = btnOriginalText;
+                        btnSubmit.disabled = false;
+                    }
+                } catch (error) {
+                    alert("Error de conexión. Revisa tu internet e intenta nuevamente.");
+                    btnSubmit.textContent = btnOriginalText;
+                    btnSubmit.disabled = false;
+                }
+            });
+
+            // Quitar el borde rojo al escribir
+            document.querySelectorAll('input, select, textarea').forEach(el => {
+                el.addEventListener('input', () => el.classList.remove('error'));
+            });
+        });
+    </script>
+</body>
+</html>

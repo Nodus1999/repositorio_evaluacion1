@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Producto — FIJASUR LTDA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .detalle-page { padding: 50px 20px 80px; background: var(--gris-claro); min-height: 70vh; }
+
+        .detalle-card {
+            background: var(--blanco);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(10,26,46,0.12);
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .detalle-imagen {
+            background: linear-gradient(135deg, var(--azul-intermedio), var(--azul-turquesa));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 110px;
+            min-height: 340px;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .detalle-imagen .tornillo-code-big {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .detalle-info { padding: 40px; }
+
+        .detalle-info .tornillo-code {
+            background: var(--gris-claro);
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .detalle-info h2 {
+            font-size: 26px;
+            color: var(--azul-oscuro);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .detalle-price {
+            font-size: 28px;
+            color: var(--azul-turquesa);
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .detalle-price small {
+            font-size: 14px;
+            font-weight: 400;
+            color: #888;
+        }
+
+        .detalle-meta {
+            border-top: 1px solid var(--gris-medio);
+            border-bottom: 1px solid var(--gris-medio);
+            padding: 16px 0;
+            margin: 18px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .detalle-meta .meta-row {
+            display: flex;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .meta-row strong { color: var(--azul-oscuro); min-width: 100px; }
+        .meta-row span { color: var(--gris-oscuro); }
+
+        .detalle-desc {
+            color: var(--gris-oscuro);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .specs-title {
+            font-weight: 700;
+            color: var(--azul-oscuro);
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .specs-list {
+            list-style: none;
+            margin-bottom: 28px;
+        }
+
+        .specs-list li {
+            color: var(--gris-oscuro);
+            font-size: 14px;
+            padding: 5px 0 5px 20px;
+            position: relative;
+            border-bottom: 1px solid var(--gris-claro);
+        }
+
+        .specs-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--azul-turquesa);
+            font-weight: 700;
+        }
+
+        .detalle-acciones { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        /* Productos relacionados */
+        .relacionados { padding: 60px 20px; background: var(--blanco); }
+        .relacionados h3 {
+            font-size: 22px;
+            color: var(--azul-oscuro);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--azul-turquesa);
+            display: inline-block;
+        }
+
+        .relacionados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .rel-card {
+            background: var(--gris-claro);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--azul-turquesa);
+            display: block;
+            transition: all 0.3s ease;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .rel-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(10,26,46,0.12); }
+        .rel-card .rel-icon { font-size: 28px; margin-bottom: 8px; }
+        .rel-card h4 { color: var(--azul-oscuro); font-size: 14px; margin-bottom: 4px; }
+        .rel-card .price { font-size: 15px; }
+        .rel-card .btn-ver-mas { 
+            font-size: 12px; 
+            display: inline-block;
+            background: var(--azul-oscuro);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 700px) {
+            .detalle-card { grid-template-columns: 1fr; }
+            .detalle-imagen { min-height: 180px; font-size: 72px; }
+            .detalle-info { padding: 24px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <img src="imagenes/VERIFICADO.jpg" alt="Logo FIJASUR" class="logo-img">
+                <div class="brand-name">
+                    <h1>FIJASUR</h1>
+                    <p class="tagline">Soluciones en Fijaciones</p>
+                </div>
+            </div>
+            <nav class="navbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="historia.html" class="nav-link">¿Quiénes Somos?</a></li>
+                    <li><a href="catalogo.html" class="nav-link active">Catálogo</a></li>
+                    <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="detalle-page">
+        <div class="container">
+
+            <div class="breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span>›</span>
+                <a href="catalogo.html">Catálogo</a>
+                <span>›</span>
+                <span id="breadcrumbNombre">Producto</span>
+            </div>
+
+            <div class="detalle-card fade-in" id="detalleCard">
+                </div>
+
+        </div>
+    </div>
+
+    <section class="relacionados">
+        <div class="container">
+            <h3>Otros productos</h3>
+            <div class="relacionados-grid" id="relacionadosGrid"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 <strong>FIJASUR LTDA</strong> — Rancagua, O'Higgins | Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const id = parseInt(getUrlParam('id'));
+            const producto = tornillos.find(t => t.id === id);
+
+            if (!producto) {
+                document.getElementById('detalleCard').innerHTML = `
+                    <div style="padding:60px;text-align:center;grid-column:1/-1">
+                        <p style="font-size:18px;color:#888;">Producto no encontrado.</p>
+                        <a href="catalogo.html" class="btn btn-primary" style="margin-top:20px">Volver al Catálogo</a>
+                    </div>`;
+                return;
+            }
+
+            // Breadcrumb
+            document.title = `${producto.nombre} — FIJASUR LTDA`;
+            document.getElementById('breadcrumbNombre').textContent = producto.nombre;
+
+            // Badge stock
+            const stockLabel = producto.stock === 'disponible' ? 'En stock' : 'Bajo stock';
+
+            // Specs HTML
+            const specsHtml = producto.specs.map(s => `<li>${s}</li>`).join('');
+
+            // Validamos la imagen para el detalle
+            const imagenDetalle = producto.imagen && !producto.imagen.includes('default.png')
+                ? `<img src="${producto.imagen}" alt="${producto.nombre}" style="width: 100%; height: 100%; object-fit: contain; max-height: 340px;">`
+                : `<span style="font-size:100px">🔩</span><span class="tornillo-code-big">${producto.codigo}</span>`;
+            
+            const estiloFondoDetalle = producto.imagen && !producto.imagen.includes('default.png') ? 'background: #fff; border-right: 1px solid #eee;' : '';
+
+            document.getElementById('detalleCard').innerHTML = `
+                <div class="detalle-imagen" style="${estiloFondoDetalle}">
+                    ${imagenDetalle}
+                </div>
+                <div class="detalle-info">
+                    <h2>${producto.nombre}</h2>
+                    ${producto.precio ? `<span class="detalle-price">${producto.precio}</span>` : ''}
+
+                    <div class="detalle-meta">
+                        <div class="meta-row"><strong>Código:</strong><span>${producto.codigo}</span></div>
+                        <div class="meta-row"><strong>Tamaño:</strong><span>${producto.tamaño}</span></div>
+                        <div class="meta-row"><strong>Material:</strong><span>${producto.material}</span></div>
+                    </div>
+
+                    <p class="detalle-desc">${producto.descripcion}</p>
+
+                    <p class="specs-title">Especificaciones técnicas:</p>
+                    <ul class="specs-list">${specsHtml}</ul>
+
+                    <div class="detalle-acciones">
+                        <a href="contacto.html?producto=${encodeURIComponent(producto.nombre)}" class="btn btn-primary">Solicitar Cotización</a>
+                        <a href="catalogo.html" class="btn btn-secondary">← Volver al Catálogo</a>
+                    </div>
+                </div>
+            `;
+
+            // Relacionados (otros productos de forma aleatoria)
+            // 1. Filtramos para no mostrar el producto actual
+            const otrosProductos = tornillos.filter(t => t.id !== id);
+            
+            // 2. Ordenamos el array al azar (Math.random) y tomamos solo los primeros 4 (.slice)
+            const relacionadosAleatorios = otrosProductos.sort(() => 0.5 - Math.random()).slice(0, 4);
+            
+            const relGrid = document.getElementById('relacionadosGrid');
+            relacionadosAleatorios.forEach(r => {
+                const card = document.createElement('a');
+                card.href = `detalle.html?id=${r.id}`;
+                card.className = 'rel-card';
+                
+                // Generamos la imagen o el icono de repuesto
+                const relImagen = r.imagen && !r.imagen.includes('default.png') 
+                    ? `<div style="height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; background: #fff; border-radius: 4px; overflow: hidden;">
+                         <img src="${r.imagen}" alt="${r.nombre}" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                       </div>`
+                    : `<div class="rel-icon" style="text-align: center; margin-bottom: 15px;">🔩</div>`;
+
+                card.innerHTML = `
+                    ${relImagen}
+                    <h4>${r.nombre}</h4>
+                    <p style="font-size:12px;color:#888;margin:4px 0 8px;">${r.codigo}</p>
+                    <span class="btn-ver-mas">Ver →</span>
+                `;
+                relGrid.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>

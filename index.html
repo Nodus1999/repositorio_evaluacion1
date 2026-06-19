@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FIJASUR LTDA - Soluciones profesionales en tornillos y fijaciones para Rancagua y la Región de O'Higgins">
+    <title>Inicio — FIJASUR LTDA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos exclusivos de inicio */
+        .features {
+            background: var(--blanco);
+            padding: 80px 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 28px 20px;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 14px;
+        }
+
+        .feature-item h3 {
+            color: var(--azul-oscuro);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Números destacados */
+        .stats {
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-intermedio));
+            color: var(--blanco);
+            padding: 60px 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--azul-turquesa);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-item .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 6px;
+            display: block;
+        }
+
+        /* CATEGORÍAS CON FONDO */
+        .categorias {
+            position: relative; 
+            background: linear-gradient(rgba(10, 26, 46, 0.85), rgba(10, 26, 46, 0.90)), url('imagenes/InteriorFijasur.jpeg') center center / cover no-repeat fixed;
+            padding: 80px 20px;
+            min-height: 600px;
+        }
+
+        .categorias .section-title {
+            color: var(--blanco);
+            text-align: center;
+        }
+
+        .categorias-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 992px) {
+            .categorias-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .categorias-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .categorias-grid { grid-template-columns: 1fr; }
+        }
+
+        .categoria-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            border-left: 4px solid var(--azul-turquesa);
+            transition: all 0.3s ease;
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .categoria-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border-left-color: var(--azul-claro);
+            background: var(--blanco);
+        }
+
+        .categoria-card .cat-icon { font-size: 36px; margin-bottom: 12px; }
+        .categoria-card h3 { color: var(--azul-oscuro); font-size: 16px; font-weight: 600; margin-bottom: 6px;}
+        .categoria-card p { color: #777; font-size: 13px; margin: 0; }
+
+        .categoria-card img {
+            height: 40px; 
+            width: auto;
+            margin: 0 auto 12px auto; 
+            display: block;
+            object-fit: contain;
+        }
+
+        /* =========================================================
+           MENÚ DESPLEGABLE EN LA ESQUINA DE LA SECCIÓN
+           ========================================================= */
+        
+        .menu-seccion-btn {
+            position: absolute;
+            top: 40px;
+            right: 5%; 
+            background-color: rgba(10, 26, 46, 0.9);
+            border: 2px solid var(--azul-turquesa, #00a8cc);
+            width: 55px;
+            height: 55px;
+            border-radius: 8px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .menu-seccion-btn:hover {
+            background-color: var(--azul-turquesa, #00a8cc);
+            transform: scale(1.05);
+        }
+
+        .menu-seccion-btn span {
+            display: block;
+            width: 26px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: background 0.3s ease;
+        }
+
+        .panel-menu-seccion {
+            position: absolute;
+            top: 105px; 
+            right: 5%;
+            width: 260px;
+            background-color: rgba(10, 26, 46, 0.98);
+            border: 1px solid var(--azul-turquesa, #00a8cc);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-15px);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .panel-menu-seccion.activo {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .panel-menu-seccion ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-height: 300px; 
+            overflow-y: auto;
+        }
+
+        .panel-menu-seccion ul::-webkit-scrollbar {
+            width: 6px;
+        }
+        .panel-menu-seccion ul::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .panel-menu-seccion ul::-webkit-scrollbar-thumb {
+            background: var(--azul-turquesa);
+            border-radius: 10px;
+        }
+
+        .panel-menu-seccion li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .panel-menu-seccion li:last-child {
+            border-bottom: none;
+        }
+
+        .panel-menu-seccion a {
+            display: block;
+            padding: 15px 20px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .panel-menu-seccion a:hover {
+            background-color: rgba(0, 168, 204, 0.15); 
+            color: var(--azul-turquesa, #00a8cc);
+            padding-left: 28px; 
+        }
+
+        /* =========================================================
+           SECCIÓN: PRODUCTOS DESTACADOS
+           ========================================================= */
+        .destacados-section {
+            background: var(--azul-oscuro);
+            padding: 80px 20px;
+        }
+
+        .destacados-section .section-title {
+            color: var(--blanco);
+        }
+
+        .destacados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .prod-card {
+            background: var(--gris-claro);
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            border-top: 4px solid transparent; 
+            transition: all 0.3s ease; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        .prod-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+            border-top: 4px solid var(--azul-turquesa); 
+            background: #f0f9ff; 
+        }
+
+        .prod-img {
+            background: var(--blanco);
+            height: 200px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s ease;
+        }
+
+        .prod-card:hover .prod-img {
+            background: #f0f9ff;
+            border-bottom-color: #e0f2fe;
+        }
+
+        .prod-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .prod-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .prod-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .prod-tag {
+            background: #e0f2fe;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #0369a1;
+            font-weight: 700;
+        }
+
+        .prod-title {
+            font-size: 16px;
+            color: var(--azul-oscuro);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .prod-link {
+            margin-top: auto;
+            color: var(--azul-turquesa);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           SECCIÓN: FERRETERÍAS (CONTRASTE BLANCO)
+           ========================================================= */
+        .clientes-section {
+            background: var(--blanco); /* Cambiado a blanco puro para contraste */
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .clientes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cliente-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .cliente-info {
+            padding: 20px;
+            border-top: 4px solid var(--azul-turquesa);
+            background: var(--blanco);
+        }
+
+        /* CTA final */
+        .cta-section {
+            background: var(--blanco);
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid var(--gris-claro);
+        }
+
+        .whatsapp-flotante {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <img src="imagenes/VERIFICADO.jpg" alt="Logo FIJASUR" class="logo-img">
+                <div class="brand-name">
+                    <h1>FIJASUR</h1>
+                    <p class="tagline">Definición de calidad y precio</p>
+                </div>
+            </div>
+            <nav class="navbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link active">Inicio</a></li>
+                    <li><a href="historia.html" class="nav-link">¿Quiénes Somos?</a></li>
+                    <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+                    <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h2>Soluciones de Fijación para tu Proyecto</h2>
+                <p>Distribuidor profesional de tornillos y fijaciones en Rancagua y la Región de O'Higgins. Calidad garantizada, entrega rápida.</p>
+                <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+                    <a href="catalogo.html" class="btn btn-primary">Ver Catálogo</a>
+                    <a href="contacto.html" class="btn" style="background:rgba(255,255,255,0.18);color:#fff;border:2px solid rgba(255,255,255,0.5);">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">+9000</span>
+                    <span class="stat-label">Productos en stock</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">11</span>
+                    <span class="stat-label">Líneas de productos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">+10</span>
+                    <span class="stat-label">Años de experiencia</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24h</span>
+                    <span class="stat-label">Despacho en la región</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="categorias">
+        <!-- BOTÓN EXCLUSIVO DE ESTA SECCIÓN -->
+        <button class="menu-seccion-btn" id="abrirMenuSeccionBtn" aria-label="Menú de Sección">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- PANEL DESPLEGABLE CON MATERIALES -->
+        <div class="panel-menu-seccion" id="panelMenuSeccion">
+            <ul>
+                <li><a href="catalogo.html">Todos</a></li>
+                <li><a href="catalogo.html">Acero al Carbono</a></li>
+                <li><a href="catalogo.html">Acero Galvanizado</a></li>
+                <li><a href="catalogo.html">Acero Inoxidable</a></li>
+                <li><a href="catalogo.html">Acero Inoxidable 304</a></li>
+                <li><a href="catalogo.html">Acero Inoxidable 316L</a></li>
+                <li><a href="catalogo.html">Acero Templado</a></li>
+                <li><a href="catalogo.html">Acero Zincado</a></li>
+                <li><a href="catalogo.html">Latón</a></li>
+                <li><a href="catalogo.html">Zincado Blanco</a></li>
+            </ul>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Nuestras Líneas de Producto</h2>
+            
+            <div class="categorias-grid">
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">🔩</div>
+                    <h3>Cabeza Lenteja</h3>
+                    <p>Fijación precisa y estructuras</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">🔧</div>
+                    <h3>Hexagonales</h3>
+                    <p>Máxima resistencia metálica</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">🏗️</div>
+                    <h3>Volcanita (CRS)</h3>
+                    <p>Tabiquería y construcción en seco</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">🚀</div>
+                    <h3>Turbo Jet</h3>
+                    <p>Perforación ultra rápida</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">🧱</div>
+                    <h3>Anclajes y Tarugos</h3>
+                    <p>Fijación segura en concreto y muros</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">🏠</div>
+                    <h3>Fibrocemento</h3>
+                    <p>Placas exteriores y revestimientos</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">⚙️</div>
+                    <h3>Hilo Fino</h3>
+                    <p>Metal y perfiles livianos</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">💿</div>
+                    <h3>Disco de Corte</h3>
+                    <p>Cortes limpios y precisos</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">🪵</div>
+                    <h3>Tirafondo</h3>
+                    <p>Vigas y maderas pesadas</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">🔨</div>
+                    <h3>Clavo de Disparo</h3>
+                    <p>Fijaciones de impacto rápido</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card">
+                    <div class="cat-icon">🪛</div>
+                    <h3>Puntas PH2</h3>
+                    <p>Accesorios de atornillado</p>
+                </a>
+                <a href="catalogo.html" class="categoria-card" style="border-left-color: var(--azul-oscuro);">
+                    <div class="cat-icon">📦</div>
+                    <h3>Catálogo Completo</h3>
+                    <p>Ver todas las opciones</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="destacados-section">
+        <div class="container">
+            <h2 class="section-title">Productos Destacados</h2>
+            <div class="destacados-grid" id="destacadosGrid">
+                </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="catalogo.html" class="btn btn-primary" style="background: var(--azul-turquesa); color: var(--blanco);">Ver Catálogo Completo</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="clientes-section">
+        <div class="container">
+            <h2 class="section-title">Ellos confían en FIJASUR</h2>
+            <div class="clientes-grid">
+                <div class="cliente-card">
+                    <img src="imagenes/ferreteriaDonHector.jpeg" alt="Instalación en Ferretería Don Héctor">
+                    <div class="cliente-info">
+                        <h4>Ferretería Don Héctor</h4>
+                    </div>
+                </div>
+                <div class="cliente-card">
+                    <img src="imagenes/FerreteriaMolivar.jpeg" alt="Instalación en Ferretería Molivar">
+                    <div class="cliente-info">
+                        <h4>Ferretería Molivar</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 <strong>FIJASUR LTDA</strong> — Rancagua, O'Higgins | Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/56965069458?text=Hola,%20vengo%20desde%20la%20p%C3%A1gina%20web%20de%20FIJASUR%20y%20me%20gustar%C3%ADa%20hacer%20una%20consulta." class="whatsapp-flotante" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 32 32" width="24" height="24">
+            <path fill="currentColor" d="M16.05 32h-.05c-2.68 0-5.32-.72-7.66-2.09L0 32l2.2-8.11A15.86 15.86 0 0 1 .1 15.95C.1 7.15 7.25 0 16.05 0s15.95 7.15 15.95 15.95S24.85 32 16.05 32zM8.53 27.24l.53.31a13.3 13.3 0 0 0 6.94 1.95c7.37 0 13.36-5.99 13.36-13.36S23.37 2.78 16 2.78 2.64 8.77 2.64 16.14c0 2.45.66 4.82 1.91 6.89l.34.56L3.5 28.5l5.03-1.26zm12.35-7.39c-.19-.31-.72-.5-1.5-.88s-4.63-2.28-5.34-2.54-.88-.25-1.25.31c-.38.56-1.44 1.81-1.75 2.19s-.63.44-1.41.06a10.9 10.9 0 0 1-3.21-1.98 12.06 12.06 0 0 1-2.22-2.75c-.31-.54-.03-.83.36-1.22.36-.36.75-.88 1.13-1.31.38-.44.5-.75.75-1.25s.13-.94-.06-1.31c-.19-.38-1.25-3.03-1.72-4.14-.45-1.08-.92-1.04-1.25-1.04-.31 0-.69-.02-1.06-.02s-1.03.14-1.56.72C3.12 9.42 1.5 10.95 1.5 14c0 3.03 2.13 5.97 2.44 6.38.31.41 4.34 6.63 10.5 9.28 1.47.64 2.61 1.02 3.51 1.3.1.03.19.06.29.08 1.34.28 2.56.25 3.53.13 1.08-.14 3.34-1.38 3.81-2.72s.47-2.47.33-2.72z"/>
+        </svg>
+        WhatsApp
+    </a>
+
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // LÓGICA DEL NUEVO MENÚ DESPLEGABLE CON MATERIALES
+            const btnSeccion = document.getElementById('abrirMenuSeccionBtn');
+            const panelSeccion = document.getElementById('panelMenuSeccion');
+
+            btnSeccion.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                panelSeccion.classList.toggle('activo');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!panelSeccion.contains(e.target) && e.target !== btnSeccion) {
+                    panelSeccion.classList.remove('activo');
+                }
+            });
+
+            // Lógica de productos destacados
+            const contenedor = document.getElementById('destacadosGrid');
+            if(contenedor && typeof tornillos !== 'undefined') {
+                const tornillosMezclados = [...tornillos].sort(() => 0.5 - Math.random());
+                const productosMostrados = tornillosMezclados.slice(0, 4);
+                
+                productosMostrados.forEach(t => {
+                    const card = document.createElement('a');
+                    card.href = `detalle.html?id=${t.id}`;
+                    card.className = 'prod-card';
+
+                    const rutaSegura = t.imagen ? encodeURI(t.imagen) : '';
+                    const imagenContenido = t.imagen && !t.imagen.includes('default.png')
+                        ? `<img src="${rutaSegura}" alt="${t.nombre}">` 
+                        : `<div style="font-size:60px;">🔩</div>`;
+
+                    card.innerHTML = `
+                        <div class="prod-img">
+                            ${imagenContenido}
+                        </div>
+                        <div class="prod-info">
+                            <div class="prod-tags">
+                                <span class="prod-tag">Cód: ${t.codigo}</span>
+                                <span class="prod-tag">Medida: ${t.tamaño}</span>
+                            </div>
+                            <h3 class="prod-title">${t.nombre}</h3>
+                            <span class="prod-link">Ver Ficha →</span>
+                        </div>
+                    `;
+                    contenedor.appendChild(card);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
